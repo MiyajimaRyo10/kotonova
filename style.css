@@ -1,0 +1,333 @@
+body {
+    font-family: "Arial", sans-serif;
+    text-align: center;
+    background-color: #ffebf0;
+}
+
+.screen {
+    display: none;
+    padding: 50px;
+}
+
+.screen.active {
+    display: block;
+}
+
+h1, h2 {
+    color: #ff69b4;
+}
+
+button {
+    background-color: #ff69b4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #ff1493;
+}
+
+.hidden {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+.health-bar {
+    font-size: 20px;
+    margin: 10px;
+    padding: 10px;
+    background-color: #ffcccb;
+}
+
+#battle-area {
+    margin-top: 20px;
+}
+
+.characters {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.character-option {
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.character-option:hover {
+    transform: scale(1.1);
+}
+
+/* バトル画面のキャラクターサイズ調整 */
+.character-img {
+    max-width: 500px;
+    max-height: 50vh;
+    object-fit: contain;
+}
+
+
+
+/* 入力欄とボタンを調整 */
+.input-area {
+    width: 80%; /* 入力欄の幅 */
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 20px;
+}
+
+#word-input {
+    width: 60%;  /* 入力欄の幅を広げる */
+    font-size: 18px;
+    padding: 10px;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+/* キャラクター選択画面で選択されたキャラを目立たせる */
+.character.selected {
+    border: 3px solid #ff9900;  /* オレンジ色でハイライト */
+    box-shadow: 0 0 10px rgba(255, 153, 0, 0.6);  /* 明るいオレンジの影 */
+}
+
+
+.character-option.selected .character-img {
+    border: 2px solid #ff69b4;
+}
+
+/* スタート画面全体のデザイン */
+#title-screen {
+    background-image: url('image/START.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* 下寄せに変更 */
+    margin: 0;
+    padding: 0;
+    padding-bottom: 50px; /* ボタンの下に余白を追加 */
+}
+
+/* 縦スクロールの防止 (bodyとhtml全体の設定) */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.title-content {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5); /* 背景を半透明にする */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* ボタンのデザイン */
+#start-button {
+    background-color: #ff69b4;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    margin-bottom: 80px; /* ボタンの位置調整用 */
+}
+
+#start-button:hover {
+    background-color: #ff1493;
+}
+
+/* バトル画面全体のデザイン */
+#game-screen {
+    background-image: url('image/battle-background.png'); /* バトル背景画像 */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    color: white;
+}
+
+/* 体力バー */
+.health-bars {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin-top: 20px;
+}
+
+/* 体力バーのスタイル */
+.health-bar {
+    position: relative;
+    width: 50%;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid white;
+}
+
+/* 体力バー */
+.health-bar {
+    position: relative;
+    width: 50%;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid white;
+}
+
+/* 体力ゲージ */
+.health-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: width 0.3s ease-in-out;
+}
+
+.player1 .health-fill {
+    background-color: #00f; /* 青色の体力ゲージ */
+}
+
+.player2 .health-fill {
+    background-color: #f00; /* 赤色の体力ゲージ */
+}
+
+/* 体力数値の表示 */
+.health-value {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    z-index: 2;
+}
+
+/* ゲームオーバーメッセージ */
+#game-over-message {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: red;
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* キャラクター表示 */
+.battle-area .characters {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 40px 0;
+}
+
+
+
+/* 入力エリア */
+.input-area {
+    text-align: center;
+    width: 100%;
+}
+
+#word-prompt {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#word-input {
+    width: 60%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* アクションボタン */
+.action-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}
+
+#attack-button {
+    background-color: #f00;
+}
+
+#heal-button {
+    background-color: #00f;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* 優勝画面 */
+#winner-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+}
+
+.winner-img {
+    width: 300px;
+    height: auto;
+}
+
+#winner-name {
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>しりとりバトル - キャラ選択</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="character-select-screen" class="screen active">
+    <h2>キャラクターを選ぼう！</h2>
+    <div class="characters">
+        <div class="character-option">
+            <img src="image/ミズノン.png" alt="ミズノン" class="character-img" data-character="Mizunon">
+            <p>ミズノン</p>
+        </div>
+        <div class="character-option">
+            <img src="image/メラゴン.png" alt="メラゴン" class="character-img" data-character="Meragon">
+            <p>メラゴン</p>
+        </div>
+        <div class="character-option">
+            <img src="image/リーフン.png" alt="リーフン" class="character-img" data-character="Leafun">
+            <p>リーフン</p>
+        </div>
+    </div>
+    <button id="confirm-character">キャラクター決定</button>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        let selectedCharacter = null;
+
+        // キャラクター選択処理
+        const characterOptions = document.querySelectorAll(".character-option");
+        characterOptions.forEach(option => {
+            option.addEventListener("click", () => {
+                characterOptions.forEach(opt => opt.classList.remove("selected"));
+                option.classList.add("selected");
+                selectedCharacter = option.querySelector(".character-img").dataset.character;
+                console.log(`選択されたキャラクター: ${selectedCharacter}`);
+            });
+        });
+
+        // キャラクター決定ボタン
+        document.getElementById("confirm-character").addEventListener("click", () => {
+            if (!selectedCharacter) {
+                alert("キャラクターを選んでください！");
+                return;
+            }
+            // 選択されたキャラを localStorage に保存
+            localStorage.setItem("selectedCharacter", selectedCharacter);
+            window.location.href = "battle.html";
+        });
+    });
+</script>
+
+</body>
+</html>

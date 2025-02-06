@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>優勝者画面</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="winner-screen">
+    <img id="winner-image" src="" alt="優勝者" class="winner-img">
+    <h1 id="winner-name"></h1>
+    <button id="restart-button">スタート画面に戻る</button>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const winnerCharacter = localStorage.getItem("winnerCharacter");
+        const winnerImage = document.getElementById("winner-image");
+        const winnerName = document.getElementById("winner-name");
+
+        if (winnerCharacter === "Mizunon") {
+            winnerImage.src = "image/ミズノン.png";
+            winnerName.textContent = "ミズノンの勝利！";
+        } else if (winnerCharacter === "Meragon") {
+            winnerImage.src = "image/メラゴン.png";
+            winnerName.textContent = "メラゴンの勝利！";
+        } else if (winnerCharacter === "Leafun") {
+            winnerImage.src = "image/リーフン.png";
+            winnerName.textContent = "リーフンの勝利！";
+        } else {
+            winnerImage.src = "image/default.png";
+            winnerName.textContent = "不明な勝者";
+        }
+
+        document.getElementById("restart-button").addEventListener("click", () => {
+            window.location.href = "index.html";
+        });
+    });
+</script>
+
+</body>
+</html>
